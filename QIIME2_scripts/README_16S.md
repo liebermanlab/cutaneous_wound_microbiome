@@ -1,4 +1,4 @@
-16S processing pipeline:
+# 16S processing pipeline:
 
 Here, a barcode metadata sheet with the format name-tab-barcode is uploaded as metadata_qiime_v1_Alex.tsv for adaptor trimming purposes. DADA2_process.slurm then imports a multiplexed data file, demultiplexes it based on metadata_qiime_v1_Alex.tsv, trims the AGAGTTTGATCMTGGCTCAG primer sequence from the first paired end read using cutadapt, and then uses DADA2 to resolve single nucleotide differences between ASVs. This results in a variety of qza and qzv files, returning all filtered and processed sequence data as data.demux_se.trim.sq4.dada2.qza. 
 
@@ -6,7 +6,7 @@ In order to built the 16S classifier used here, classifer_input_seqs.fna and cla
 
 In classify_seqs.slurm, classifier.qza and data.demux_se.trim.sq4.dada2.qza are processing using QIIME2's classify-sklearn command, resulting in the output taxonomy.qiimeres-classifier.data.demux_se.trim.sq4.dada2.qza file. This is transformed into a QIIME2 visualizable table taxonomy.qiimeres-classifier.data.demux_se.trim.sq4.dada2.qzv. Additionally, raw ASV sequences are outputted as SILVA_OTU_sequences/sequences.fasta. Raw ASV counts are additionally outputted to dada2_OTU_export/feature-table.tsv and classifications to taxonomic_OTU_classification/metadata.tsv. 
 
-Building a curated SILVA rRNA database:
+# Building a curated SILVA rRNA database:
 
 In order to clean dna-sequences.fasta, which holds the entirely of SILVA's v132 rRNA database, taxa to be classified down to the species level are first split into files separated by genus or family by pull_out_species_for_SATIVA.m. These included the genuses Cutibacterium, Acidipropionibacterium, Pseudopropionibacterium, Propionibacterium (which are grouped together into one file), as well as Corynebacteriaceae and the chronically-mislabelled Neisseriaceae families (Neisseriaceae families are again grouped together). Only genuses or families to be cleaned by SATIVA are split into individual files named SILVA_v132_{taxon here}_unmodified.fasta; all other sequences to remain in the classifier remain in SILVA_v132_not_specified_genus_unmodified. Sequences with taxonomies that contain multiple terms that would separate them under multiple taxa files (ex. "Bacteria;Firmicutes;Bacilli;Bacillales;Staphylococcaceae;Staphylococcus;Corynebacterium diphtheriae") are held in SILVA_v132_confusing_genus_unmodified.fasta and discarded from analysis. 
 
