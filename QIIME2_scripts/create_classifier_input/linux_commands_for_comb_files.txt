@@ -1,0 +1,3 @@
+cat final_SATIVA_cleaned_coryne.fasta final_SATIVA_cleaned_cuti.fasta final_SATIVA_cleaned_staph.fasta final_SATIVA_other_species.fasta final_SATIVA_cleaned_neisseria.fasta > classifer_input_seqs.fna
+
+cat final_SATIVA_cleaned_coryne.tax final_SATIVA_cleaned_cuti.tax final_SATIVA_cleaned_staph.tax final_SATIVA_other_species.tax final_SATIVA_cleaned_neisseria.tax > classifer_input_seqs.tax
