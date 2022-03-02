@@ -3,10 +3,10 @@ source activate /scratch/mit_lieberman/projects/alex_corynebacterium/QIIME2_new_
 
 echo "Import files"
 
-biom convert -i 07-Feb-2022_OTUs_combined_batches.txt -o cleaned_OTU_table_for_unifrac_hdf5.biom --table-type="OTU table" --to-hdf5
+biom convert -i 07-Feb-2022_AVSs_combined_batches.txt -o cleaned_ASV_table_for_unifrac_hdf5.biom --table-type="OTU table" --to-hdf5
 
 qiime tools import \
-  --input-path cleaned_OTU_table_for_unifrac_hdf5.biom \
+  --input-path cleaned_ASV_table_for_unifrac_hdf5.biom \
   --type 'FeatureTable[Frequency]' \
   --input-format BIOMV210Format \
   --output-path feature-table.qza
